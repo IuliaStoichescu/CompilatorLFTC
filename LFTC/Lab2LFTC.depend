@@ -74,3 +74,41 @@
 	<stdarg.h>
 	"utils.h"
 
+1710255319 source:c:\users\iulia\desktop\an3\lftc\projectlftc\compilatorlftc\lftc\lexer.c
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	<stdint.h>
+	<stdlib.h>
+	"lexer.h"
+	"utils.h"
+
+1709471424 c:\users\iulia\desktop\an3\lftc\projectlftc\compilatorlftc\lftc\lexer.h
+
+1709020061 c:\users\iulia\desktop\an3\lftc\projectlftc\compilatorlftc\lftc\utils.h
+	<stddef.h>
+	<stdnoreturn.h>
+
+1713086806 source:c:\users\iulia\desktop\an3\lftc\projectlftc\compilatorlftc\lftc\main.c
+	<stdio.h>
+	<stdlib.h>
+	"utils.h"
+	"lexer.h"
+	"parser.h"
+
+1710249722 c:\users\iulia\desktop\an3\lftc\projectlftc\compilatorlftc\lftc\parser.h
+	"lexer.h"
+
+1709020061 source:c:\users\iulia\desktop\an3\lftc\projectlftc\compilatorlftc\lftc\utils.c
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+	"utils.h"
+
+1713086740 source:c:\users\iulia\desktop\an3\lftc\projectlftc\compilatorlftc\lftc\parser.c
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+	<stdbool.h>
+	"parser.h"
+

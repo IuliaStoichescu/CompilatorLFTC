@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <stdbool.h>
-#include "lexer.h"
 #include "parser.h"
 
 Token *iTk;		// the iterator in the tokens list
@@ -68,9 +67,15 @@ bool unit() //fiecare regula va fi implementata cu functia ei
 		else if(varDef()){}
 		else break;
     }
-	if(consume(END)){
+	if(consume(END))
+        {
 		return true; //true daca regula a fost indeplinita si false otherwise
-		}else tkerr("Missing end of file\n");
+		}
+    else
+    {
+        printf("Current token: %d\n",iTk->code);
+        tkerr("Missing end of file\n");
+    }
 	return false;
 }
 
@@ -90,21 +95,32 @@ bool structDef()
                     {
                         //return true;
                     }
-                    else break;
+                    else
+                    {break;}
                 }
 
                 if(consume(RACC))
-                    {
+                {
                         if(consume(SEMICOLON))
                         {
                             return true;
                         }
-                        else tkerr("Expected semicolon after end of structure\n");
-                    }
-                    else tkerr("Expected RACC after declaring fields in the struct\n");//incercam sa consumam varDef u
+                        else
+                        {
+                            tkerr("Expected semicolon after end of structure\n");
+                        }
+                }
+                else
+                {
+                    tkerr("Expected RACC after declaring fields in the struct\n");//incercam sa consumam varDef u
+                }
             }iTk=startToken;
             //else {tkerr("Expected LACC before declaring fields in the struct"); iTk=startToken;}
-        }else tkerr("Expected name of the structure");
+        }else
+        {
+            tkerr("Expected name of the structure");
+
+        }
     }
     iTk=startToken;
     return false;
@@ -127,16 +143,27 @@ bool varDef()
 					{
 						if(arrayDecl()){}
 					}
-					else tkerr("Missing identifier\n");
+					else
+                    {
+                        tkerr("Missing identifier\n");
+                    }
 				}
-				else break;
+				else {break;}
             }
             if(consume(SEMICOLON))
             {
                 return true;
-            }else tkerr("Expected semicolon after declaring an array\n");
+            }
+            else
+            {
+                tkerr("Expected semicolon after declaring an array\n");
+            }
 
-        }else tkerr("Expected variable name\n");
+        }
+        else
+        {
+            tkerr("Expected variable name\n");
+        }
     }//else tkerr("Invalid type name");
     iTk=startToken;
     return false;
@@ -166,7 +193,11 @@ bool typeBase()
 		if(consume(ID))
         {
 			return true;
-        }else tkerr("Missing name of the struct");
+        }
+        else
+        {
+           tkerr("Missing name of the struct");
+        }
     }
     iTk=startToken;
 	return false;
@@ -179,13 +210,29 @@ bool arrayDecl()
     if(consume(LBRACKET))
     {
       if(expr()){}
-            if(consume(RBRACKET))
-            {
-                return true;
-            }else tkerr("Missing RBRACKET after array declaration\n");
+      if(consume(RBRACKET))
+        {
+            return true;
+        }
+      else
+        {
+            tkerr("Missing RBRACKET after array declaration\n");
+        }
     }
     iTk=startToken;
     return false;
+}
+
+bool typeName(){
+	if(typeBase())
+	{
+		if(arrayDecl())
+		{
+
+		}
+		return true;
+	}
+	return false;
 }
 
 //( typeBase | VOID ) ID LPAR ( fnParam ( COMMA fnParam )* )? RPAR stmCompound
@@ -209,9 +256,12 @@ bool fnDef()
                           {
 
                           }
-                          else tkerr("Missing argument after ,\n");
+                          else
+                          {
+                              tkerr("Missing argument after ,\n");
+                          }
                       }
-                      else break;
+                      else {break;}
                     }
                  }
                 if(consume(RPAR))
@@ -220,11 +270,23 @@ bool fnDef()
                             {
                                 return true;
                             }
-                        else tkerr("Missing function body\n");
+                        else
+                        {
+                            tkerr("Missing function body\n");
+                        }
 
-                    }else tkerr("Missing right paranthesis after function parameter declaration\n");
-             }else iTk=startToken;//else tkerr("Missing left paranthesis after name of function");
-        }else tkerr("Missing name of function\n");
+                    }
+                else
+                {
+                    tkerr("Missing right paranthesis after function parameter declaration\n");
+                }
+             }
+             else
+             {
+                 iTk=startToken;//else tkerr("Missing left paranthesis after name of function");
+             }
+        }
+        else tkerr("Missing name of function\n");
     }
 
     else if(consume(VOID))
@@ -243,9 +305,12 @@ bool fnDef()
                           {
 
                           }
-                          else tkerr("Missing argument after ,\n");
+                          else
+                          {
+                              tkerr("Missing argument after ,\n");
+                          }
                       }
-                      else break;
+                      else {break;}
                     }
                  }
                 if(consume(RPAR))
@@ -254,11 +319,26 @@ bool fnDef()
                             {
                                 return true;
                             }
-                        else tkerr("Missing function body.\n");
+                        else
+                        {
+                            tkerr("Missing function body.\n");
+                        }
 
-                    }else tkerr("Missing right paranthesis after function parameter declaration\n");
-             }else tkerr("Missing left paranthesis after name of function");
-        }else tkerr("Missing name of function\n");
+                    }
+                else
+                    {
+                        tkerr("Missing right paranthesis after function parameter declaration\n");
+                    }
+             }
+             else
+             {
+                 tkerr("Missing left paranthesis after name of function");
+             }
+        }
+        else
+        {
+                tkerr("Missing name of function\n");
+        }
     }
     iTk=startToken;
     return false;
@@ -267,18 +347,23 @@ bool fnDef()
 //typeBase ID arrayDecl?
 bool fnParam()
 {
-    Token *start=iTk; // se salvează poziția inițială a iteratorului
+    //Token *start=iTk; // se salvează poziția inițială a iteratorului
     if(typeBase())
     {
         if(consume(ID))
         {
             if(arrayDecl()){}
             return true;
-        }else ("Missing ID after declaration of variable type\n");
+        }
+        else
+        {
+            ("Missing ID after declaration of variable type\n");
+        }
     }
     // se reface poziția inițială a iteratorului, în caz că unele if-uri exterioare au consumat atomi
     return false;
 }
+
 
 /*stmCompound
 | IF LPAR expr RPAR stm ( ELSE stm )?
@@ -309,13 +394,34 @@ bool stm()
                             if(stm())
                             {
                                 //return true;
-                            }else tkerr("Expected ELSE expression\n");
+                            }
+                            else
+                            {
+                                tkerr("Expected ELSE expression\n");
+                            }
+
                         }
-                        return true;
-                    }else tkerr("Missing expression\n");
-                } else tkerr("Expected right paranthesis after end of expression in if\n");
-            }else tkerr("Expected if expression\n");
-        }else tkerr("Expected left paranthesis after if\n");
+                       return true;
+                    }
+                   else
+                    {
+                        tkerr("Missing expression\n");
+                    }
+                }
+                else
+                {
+                    tkerr("Expected right paranthesis after end of expression in if\n");
+                }
+            }
+            else
+            {
+                tkerr("Expected if expression\n");
+            }
+        }
+        else
+        {
+            tkerr("Expected left paranthesis after if\n");
+        }
     }
 
     //| WHILE LPAR expr RPAR stm
@@ -382,14 +488,13 @@ bool stmCompound()
     return false;
 }
 
-//expr: exprAssign
-bool expr()
-{
-    if(exprAssign())
-    {
-        return true;
-    }
-    return false;
+// expr: exprAssign
+bool expr() {
+	if(exprAssign())
+	{
+		return true;
+	}
+	return false;
 }
 
 //exprAssign: exprUnary ASSIGN exprAssign | exprOr
@@ -414,7 +519,6 @@ bool exprAssign()
    iTk=startToken;
    return false;
 }
-
 
 //exprOrPrim: OR exprAnd exprOrPrim | ε
 bool exprOrPrim()
@@ -503,7 +607,7 @@ bool exprEq()
     Token* startToken=iTk;
     if(exprRel())
     {
-        if(exprRelPrim())
+        if(exprEqPrim())
         {
             return true;
         }
@@ -614,9 +718,8 @@ bool exprCast()
     Token* startToken=iTk;
   if(consume(LPAR))
   {
-      if(typeBase())
+      if(typeName())
       {
-          if(arrayDecl()){}
                if(consume(RPAR))
                 {
                   if(exprCast())
@@ -644,7 +747,7 @@ bool exprUnary()
     if(exprUnary())
     {
         return true;
-    }
+    } iTk=startToken;
   }//else tkerr("Missing - or ! before expression");
   if(exprPostfix())
   {
@@ -747,10 +850,6 @@ bool exprPrimary()
        return true;
    }
     if(consume(STRING))
-   {
-       return true;
-   }
-    if(consume(INT))
    {
        return true;
    }
