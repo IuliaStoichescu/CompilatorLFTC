@@ -31,6 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="ad.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ad.h" />
 		<Unit filename="lexer.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -42,6 +46,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="parser.h" />
+		<Unit filename="testad.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="utils.c">
 			<Option compilerVar="CC" />
 		</Unit>
