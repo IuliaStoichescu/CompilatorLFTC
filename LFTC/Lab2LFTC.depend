@@ -89,7 +89,7 @@
 	<stddef.h>
 	<stdnoreturn.h>
 
-1713086806 source:c:\users\iulia\desktop\an3\lftc\projectlftc\compilatorlftc\lftc\main.c
+1713087145 source:c:\users\iulia\desktop\an3\lftc\projectlftc\compilatorlftc\lftc\main.c
 	<stdio.h>
 	<stdlib.h>
 	"utils.h"
@@ -105,7 +105,7 @@
 	<stdarg.h>
 	"utils.h"
 
-1713086740 source:c:\users\iulia\desktop\an3\lftc\projectlftc\compilatorlftc\lftc\parser.c
+1713087514 source:c:\users\iulia\desktop\an3\lftc\projectlftc\compilatorlftc\lftc\parser.c
 	<stdio.h>
 	<stdlib.h>
 	<stdarg.h>

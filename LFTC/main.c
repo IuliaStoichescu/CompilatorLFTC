@@ -8,7 +8,7 @@ int main()
     Token *t;
     char *file;
 
-    char *path="testlex.c";
+    char *path="testparser.c";
 
     file=safeAlloc(strlen(path));
     sprintf(file,"%s",path);

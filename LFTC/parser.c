@@ -156,7 +156,7 @@ bool varDef()
             }
             else
             {
-                tkerr("Expected semicolon after declaring an array\n");
+                tkerr("Expected semicolon \n");
             }
 
         }
@@ -437,10 +437,26 @@ bool stm()
                     if(stm())
                     {
                         return true;
-                    }else tkerr("Expected while body\n");
-                }else tkerr("Expected right paranthesis after condition in while\n");
-            }else tkerr("Missing while condition\n");
-        }else tkerr("Expected left paranthesis after while\n");
+                    }
+                    else
+                    {
+                        tkerr("Expected while body\n");
+                    }
+                }
+                else
+                {
+                    tkerr("Expected right paranthesis after condition in while\n");
+                }
+            }
+            else
+                {
+                    tkerr("Missing while condition\n");
+                }
+        }
+        else
+        {
+            tkerr("Expected left paranthesis after while\n");
+        }
     }
 
     //| RETURN expr? SEMICOLON
@@ -450,7 +466,11 @@ bool stm()
        if(consume(SEMICOLON))
            {
                return true;
-           }else tkerr("Expected semicolon after return\n");
+           }
+           else
+           {
+               tkerr("Expected semicolon after return\n");
+           }
      }
 
      //| expr? SEMICOLON
@@ -459,7 +479,11 @@ bool stm()
         if(consume(SEMICOLON))
            {
                return true;
-           }else tkerr("Expected semicolon after expression\n");
+           }
+        else
+        {
+            tkerr("Expected semicolon after expression\n");
+        }
      }
      if(consume(SEMICOLON))
            {
@@ -483,7 +507,11 @@ bool stmCompound()
         if(consume(RACC))
            {
                return true;
-           }else tkerr("Missing right accolade after end of function\n");
+           }
+        else
+        {
+            tkerr("Missing right accolade after end of function\n");
+        }
     }
     return false;
 }
@@ -508,7 +536,11 @@ bool exprAssign()
            if(exprAssign())
            {
                return true;
-           }else tkerr("Missing right part of assign\n");
+           }
+           else
+           {
+               tkerr("Missing right part of assign\n");
+           }
        }iTk=startToken;//else tkerr("Mising variable assignation\n");
    }
    iTk=startToken;
