@@ -1,0 +1,76 @@
+# depslib dependency file v1.0
+1710251719 source:c:\users\iulia\desktop\an3\lftc\files\lexer.c
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	<stdint.h>
+	<stdlib.h>
+	"lexer.h"
+	"utils.h"
+
+1709467824 c:\users\iulia\desktop\an3\lftc\files\lexer.h
+
+1709016461 c:\users\iulia\desktop\an3\lftc\files\utils.h
+	<stddef.h>
+	<stdnoreturn.h>
+
+1709016461 source:c:\users\iulia\desktop\an3\lftc\files\utils.c
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+	"utils.h"
+
+1713080850 source:c:\users\iulia\desktop\an3\lftc\lab2lftc\main.c
+	<stdio.h>
+	<stdlib.h>
+	"utils.h"
+	"lexer.h"
+	"parser.h"
+
+1709016461 c:\users\iulia\desktop\an3\lftc\lab2lftc\utils.c
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+	"utils.h"
+
+1709020061 c:\users\iulia\desktop\an3\lftc\lab2lftc\utils.h
+	<stddef.h>
+	<stdnoreturn.h>
+
+1709040354 c:\users\iulia\desktop\an3\lftc\lab2lftc\lexer.c
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	"lexer.h"
+	"utils.h"
+
+1709471424 c:\users\iulia\desktop\an3\lftc\lab2lftc\lexer.h
+
+1710249722 c:\users\iulia\desktop\an3\lftc\lab2lftc\parser.h
+	"lexer.h"
+
+1710255319 source:c:\users\iulia\desktop\an3\lftc\lab2lftc\lexer.c
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	<stdint.h>
+	<stdlib.h>
+	"lexer.h"
+	"utils.h"
+
+1713080761 source:c:\users\iulia\desktop\an3\lftc\lab2lftc\parser.c
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+	<stdbool.h>
+	"lexer.h"
+	"parser.h"
+
+1710246122 source:c:\users\iulia\desktop\an3\lftc\lab2lftc\testparser.c
+
+1709020061 source:c:\users\iulia\desktop\an3\lftc\lab2lftc\utils.c
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+	"utils.h"
+
